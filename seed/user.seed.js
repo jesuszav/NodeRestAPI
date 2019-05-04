@@ -1,7 +1,7 @@
 [{
   "id": 1,
-  "email": "lphan@shift3tech.com",
-  "username": "lphan",
+  "email": "jzav@gmail.com",
+  "username": "jzav",
   "password": "abc123",
   "super_admin": true,
   "site_admin": true,
