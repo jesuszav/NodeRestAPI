@@ -35,6 +35,12 @@ class Uresponses {
                     method: 'POST ',
                     callback: this.createUresponse,
                     requireToken: true,
+                },
+                {
+                    route: '/delete-uresponse/id/:id',
+                    method: 'DELETE',
+                    callback: this.deleteUresponse,
+                    requireToken: true,
                 }
             ]];
     }
@@ -65,6 +71,20 @@ class Uresponses {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let uresponseCtrl = model.controller;
             let resp = yield uresponseCtrl.insert(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    updateUresponse(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let uresponseCtrl = model.controller;
+            let resp = yield uresponseCtrl.update(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    deleteUresponse(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let uresponseCtrl = model.controller;
+            let resp = yield uresponseCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }

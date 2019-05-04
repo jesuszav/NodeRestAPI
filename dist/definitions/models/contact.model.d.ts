@@ -5,5 +5,7 @@ export declare class Contact {
     getAllContacts(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     getContactById(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     createContact(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    updateContact(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    deleteContact(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     model: any;
 }

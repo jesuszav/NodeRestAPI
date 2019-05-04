@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 class Rental {
     constructor(norm) {
@@ -16,9 +24,6 @@ class Rental {
                     onDelete: 'cascade',
                     onUpdate: 'cascade'
                 },
-<<<<<<< Updated upstream
-            }, 'A table to store users rental model', []];
-=======
             }, 'A table to store users rental model',
             [
                 {
@@ -37,6 +42,18 @@ class Rental {
                     route: '/create-rental',
                     method: 'POST',
                     callback: this.createRental,
+                    requireToken: true,
+                },
+                {
+                    route: '/update-rental/id/:id',
+                    method: 'PUT',
+                    callback: this.updateRental,
+                    requireToken: true,
+                },
+                {
+                    route: '/delete-rental/id/:id',
+                    method: 'DELETE',
+                    callback: this.deleteRental,
                     requireToken: true,
                 }
             ]];
@@ -63,12 +80,25 @@ class Rental {
             let resp = yield rentalCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
->>>>>>> Stashed changes
     }
     createRental(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let rentalCtrl = model.controller;
             let resp = yield rentalCtrl.insert(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    updateRental(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let rentalCtrl = model.controller;
+            let resp = yield rentalCtrl.update(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    deleteRental(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let rentalCtrl = model.controller;
+            let resp = yield rentalCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }

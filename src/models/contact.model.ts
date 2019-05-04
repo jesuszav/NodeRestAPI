@@ -41,7 +41,13 @@ export class Contact {
         method: 'PUT',
         callback: this.updateContact,
         requireToken: true,
-      }
+      },
+      {
+        route: '/delete-conact/id/:id',
+        method: 'DELETE',
+        callback: this.deleteContact,
+        requireToken: true,
+    }
     ]];
   }
 
@@ -84,7 +90,13 @@ export class Contact {
       res.json({ message: 'Success', resp });
     }
   }
-
+  deleteContact(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+        let contactCtrl = model.controller;
+        let resp = await contactCtrl.remove(req, null, null);
+        res.json({ message: 'Success', resp });
+    }
+}
 
   set model(model: any) {
     this._model = model;

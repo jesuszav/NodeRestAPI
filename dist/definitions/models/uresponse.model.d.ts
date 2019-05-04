@@ -5,5 +5,7 @@ export declare class Uresponses {
     getAllUresponses(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     getUresponsesById(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     createUresponse(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    updateUresponse(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    deleteUresponse(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     model: any;
 }

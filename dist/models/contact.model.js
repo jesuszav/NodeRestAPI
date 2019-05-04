@@ -41,6 +41,18 @@ class Contact {
                     method: 'POST',
                     callback: this.createContact,
                     requireToken: true,
+                },
+                {
+                    route: '/update-contact/id/:id',
+                    method: 'PUT',
+                    callback: this.updateContact,
+                    requireToken: true,
+                },
+                {
+                    route: '/delete-conact/id/:id',
+                    method: 'DELETE',
+                    callback: this.deleteContact,
+                    requireToken: true,
                 }
             ]];
     }
@@ -71,6 +83,20 @@ class Contact {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let contactCtrl = model.controller;
             let resp = yield contactCtrl.insert(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    updateContact(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let contactCtrl = model.controller;
+            let resp = yield contactCtrl.update(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    deleteContact(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let contactCtrl = model.controller;
+            let resp = yield contactCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }

@@ -36,7 +36,13 @@ export class Uresponses {
         method: 'POST ',
         callback: this.createUresponse,
         requireToken: true,
-      }
+      },
+      {
+        route: '/delete-uresponse/id/:id',
+        method: 'DELETE',
+        callback: this.deleteUresponse,
+        requireToken: true,
+    }
     ]];
   }
   getAllUresponses(model: any) {
@@ -76,6 +82,13 @@ updateUresponse(model: any) {
     let uresponseCtrl = model.controller;
     let resp = await uresponseCtrl.update(req, null, null);
     res.json({ message: 'Success', resp });
+  }
+}
+deleteUresponse(model: any) {
+  return async (req: Request, res: Response, next: NextFunction) => {
+      let uresponseCtrl = model.controller;
+      let resp = await uresponseCtrl.remove(req, null, null);
+      res.json({ message: 'Success', resp });
   }
 }
 
