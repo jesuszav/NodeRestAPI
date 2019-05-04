@@ -28,7 +28,7 @@ export class Uresponses {
       {
         route: '/get-uresponses-by-id/:id',
         method: 'POST',
-        callback: this.getUreponsesById,
+        callback: this.getUresponsesById,
         requireToken: true,
       },
       {
@@ -70,6 +70,13 @@ export class Uresponses {
         let resp = await uresponseCtrl.insert(req, null, null);
         res.json({ message: 'Success', resp });
     }
+}
+updateUresponse(model: any) {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    let uresponseCtrl = model.controller;
+    let resp = await uresponseCtrl.update(req, null, null);
+    res.json({ message: 'Success', resp });
+  }
 }
 
   set model(model: any) {

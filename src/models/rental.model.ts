@@ -36,6 +36,12 @@ export class Rental {
           method: 'POST',
           callback: this.createRental,
           requireToken: true,
+      },
+      {
+        route: '/update-rental/id/:id',
+        method: 'PUT',
+        callback: this.updatRental,
+        requireToken: true,
       }
       ]];
     }
@@ -70,6 +76,13 @@ export class Rental {
           let resp = await rentalCtrl.insert(req, null, null);
           res.json({ message: 'Success', resp });
       }
+  }
+  updateRental(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      let rentalCtrl = model.controller;
+      let resp = await rentalCtrl.update(req, null, null);
+      res.json({ message: 'Success', resp });
+    }
   }
     
     set model(model: any) {
