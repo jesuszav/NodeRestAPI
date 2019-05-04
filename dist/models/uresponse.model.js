@@ -8,53 +8,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Contact {
+class Uresponses {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
                 fullName: { type: String, maxlength: 24 },
                 email: { type: String, maxlength: 250 },
-                message: { type: String, maxlength: 250 },
-                user_id: {
-                    type: Number,
-                    key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                },
-            }, 'A table to store users contact model',
+                comment: { type: String, maxlength: 250 },
+            },
+            'A table to store comment from user model',
             [
                 {
-                    route: '/get-all-contacts',
+                    route: '/get-all-uresponses',
                     method: 'POST',
-                    callback: this.getAllContacts,
+                    callback: this.getAllUresponses,
                     requireToken: true,
                 },
                 {
-                    route: '/get-contact-by-id/:id',
+                    route: '/get-uresponses-by-id/:id',
                     method: 'POST',
-                    callback: this.getContactById,
+                    callback: this.getUresponsesById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-contact',
-                    method: 'POST',
-                    callback: this.createContact,
+                    route: '/create-ureponse',
+                    method: 'POST ',
+                    callback: this.createUresponse,
                     requireToken: true,
                 }
             ]];
     }
-    getAllContacts(model) {
+    getAllUresponses(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let contactCtrl = model.controller;
-            let resp = yield contactCtrl.get(req, null, null);
+            let uresponseCtrl = model.controller;
+            let resp = yield uresponseCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getContactById(model) {
+    getUresponsesById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -62,15 +56,15 @@ class Contact {
                     id: req.params.id
                 }
             };
-            let contactCtrl = model.controller;
-            let resp = yield contactCtrl.get(req, null, null);
+            let uresponsesCtrl = model.controller;
+            let resp = yield uresponsesCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createContact(model) {
+    createUresponse(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            let contactCtrl = model.controller;
-            let resp = yield contactCtrl.insert(req, null, null);
+            let uresponseCtrl = model.controller;
+            let resp = yield uresponseCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -81,4 +75,4 @@ class Contact {
         return this._model;
     }
 }
-exports.Contact = Contact;
+exports.Uresponses = Uresponses;

@@ -14,7 +14,7 @@ export class Contact {
           references: { table: 'User', foreignKey: 'id' },
           onDelete: 'cascade',
           onUpdate: 'cascade'
-          
+
         },
       }, 'A table to store users contact model', 
       [
@@ -29,7 +29,13 @@ export class Contact {
           method: 'POST',
           callback: this.getContactById,
           requireToken: true,
-      }
+      },
+      {
+        route: '/create-contact',
+        method: 'POST',
+        callback: this.createContact,
+        requireToken: true,
+    }
       ]];
     }
 
@@ -57,6 +63,14 @@ export class Contact {
           res.json({ message: 'Success', resp });
       }
   }
+
+  createContact(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+        let contactCtrl = model.controller;
+        let resp = await contactCtrl.insert(req, null, null);
+        res.json({ message: 'Success', resp });
+    }
+}
     
     set model(model: any) {
       this._model = model;

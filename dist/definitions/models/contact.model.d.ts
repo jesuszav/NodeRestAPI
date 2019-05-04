@@ -4,5 +4,6 @@ export declare class Contact {
     constructor(norm: any);
     getAllContacts(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     getContactById(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    createContact(model: any): (req: Request, res: Response, next: NextFunction) => Promise<void>;
     model: any;
 }

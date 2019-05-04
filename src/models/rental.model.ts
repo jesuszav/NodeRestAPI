@@ -30,7 +30,13 @@ export class Rental {
           method: 'POST',
           callback: this.getRentalById,
           requireToken: true,
-        }
+        },
+        {
+          route: '/create-rental',
+          method: 'POST',
+          callback: this.createRental,
+          requireToken: true,
+      }
       ]];
     }
 
@@ -58,6 +64,13 @@ export class Rental {
       }
     }
 
+    createRental(model: any) {
+      return async (req: Request, res: Response, next: NextFunction) => {
+          let rentalCtrl = model.controller;
+          let resp = await rentalCtrl.insert(req, null, null);
+          res.json({ message: 'Success', resp });
+      }
+  }
     
     set model(model: any) {
       this._model = model;

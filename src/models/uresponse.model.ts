@@ -30,6 +30,12 @@ export class Uresponses {
         method: 'POST',
         callback: this.getUreponsesById,
         requireToken: true,
+      },
+      {
+        route: '/create-ureponse',
+        method: 'POST ',
+        callback: this.createUresponse,
+        requireToken: true,
       }
     ]];
   }
@@ -57,6 +63,14 @@ export class Uresponses {
       res.json({ message: 'Success', resp });
     }
   }
+
+  createUresponse(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+        let uresponseCtrl = model.controller;
+        let resp = await uresponseCtrl.insert(req, null, null);
+        res.json({ message: 'Success', resp });
+    }
+}
 
   set model(model: any) {
     this._model = model;
