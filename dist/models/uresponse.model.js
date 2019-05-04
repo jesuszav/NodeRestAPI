@@ -8,49 +8,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Rental {
+class Uresponses {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                location: { type: String, maxlength: 24 },
-                rules: { type: String, maxlength: 250 },
-                description: { type: String, maxlength: 250 },
-                cancellations: { type: String, maxlength: 250 },
-                image: { type: String, maxlength: 1000 },
-                user_id: {
-                    type: Number,
-                    key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                },
-            }, 'A table to store users rental model',
+                fullName: { type: String, maxlength: 24 },
+                email: { type: String, maxlength: 250 },
+                comment: { type: String, maxlength: 250 },
+            },
+            'A table to store comment from user model',
             [
                 {
-                    route: '/get-all-rentals',
+                    route: '/get-all-uresponses',
                     method: 'POST',
-                    callback: this.getAllRentals,
+                    callback: this.getAllUresponses,
                     requireToken: true,
                 },
                 {
-                    route: '/get-rental-by-id/:id',
+                    route: '/get-uresponses-by-id/:id',
                     method: 'POST',
-                    callback: this.getRentalById,
+                    callback: this.getUresponsesById,
                     requireToken: true,
                 }
             ]];
     }
-    getAllRentals(model) {
+    getAllUresponses(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let rentalCtrl = model.controller;
-            let resp = yield rentalCtrl.get(req, null, null);
-            res.json({ message: 'Sucess', resp });
+            let uresponseCtrl = model.controller;
+            let resp = yield uresponseCtrl.get(req, null, null);
+            res.json({ message: 'Success', resp });
         });
     }
-    getRentalById(model) {
+    getUresponsesById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -58,8 +50,8 @@ class Rental {
                     id: req.params.id
                 }
             };
-            let rentalCtrl = model.controller;
-            let resp = yield rentalCtrl.get(req, null, null);
+            let uresponsesCtrl = model.controller;
+            let resp = yield uresponsesCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -70,4 +62,4 @@ class Rental {
         return this._model;
     }
 }
-exports.Rental = Rental;
+exports.Uresponses = Uresponses;

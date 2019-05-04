@@ -8,4 +8,4 @@ __export(require("./exam.model"));
 __export(require("./car.model"));
 __export(require("./rental.model"));
 __export(require("./contact.model"));
-__export(require("./rentee.model"));
+__export(require("./uresponse.model"));

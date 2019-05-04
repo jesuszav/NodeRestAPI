@@ -3,4 +3,4 @@ export * from './exam.model';
 export * from './car.model';
 export * from './rental.model';
 export * from './contact.model';
-export * from './rentee.model';
+export * from './uresponse.model';

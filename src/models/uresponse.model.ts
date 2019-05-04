@@ -28,7 +28,7 @@ export class Uresponses {
       {
         route: '/get-uresponses-by-id/:id',
         method: 'POST',
-        callback: this.getUreponsesById,
+        callback: this.getUresponsesById,
         requireToken: true,
       }
     ]];
